@@ -1,11 +1,11 @@
-// import { Kafka } from 'kafkajs'
-// const kafka = new Kafka({ brokers: [process.env.KAFKA_BROKER] })
+import { Kafka } from 'kafkajs'
+const kafka = new Kafka({ brokers: [process.env.KAFKA_BROKER] })
 
-// const consumer = kafka.consumer({ groupId: 'pay' })
-// const producer = kafka.producer()
-// await Promise.all([consumer.connect(), producer.connect()])
+const consumer = kafka.consumer({ groupId: 'pay' })
+const producer = kafka.producer()
+await Promise.all([consumer.connect(), producer.connect()])
 
-// await consumer.subscribe({ topic: 'orders' })
+await consumer.subscribe({ topic: 'orders' })
 console.log('payment listening orders…')
 
 await consumer.run({

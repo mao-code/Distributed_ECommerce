@@ -1,0 +1,9 @@
+replicaCount: 1
+auth:
+  clientProtocol: plaintext
+zookeeper:
+  enabled: true
+service:
+  listeners:
+    client:
+      protocol: PLAINTEXT
