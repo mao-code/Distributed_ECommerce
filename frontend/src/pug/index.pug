@@ -1,0 +1,100 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, shrink-to-fit=no")
+    meta(name="description", content="")
+    meta(name="author", content="")
+    title Shop Homepage - Start Bootstrap Template
+    link(rel="icon", type="image/x-icon", href="assets/favicon.ico")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css", rel="stylesheet")
+    link(href="css/styles.css", rel="stylesheet")
+  body
+    // Navigation
+    nav.navbar.navbar-expand-lg.navbar-light.bg-light
+      .container.px-4.px-lg-5
+        a.navbar-brand(href="#!") Start Bootstrap
+        button.navbar-toggler(type="button", data-bs-toggle="collapse", data-bs-target="#navbarSupportedContent", aria-controls="navbarSupportedContent", aria-expanded="false", aria-label="Toggle navigation")
+          span.navbar-toggler-icon
+        .collapse.navbar-collapse#navbarSupportedContent
+          ul.navbar-nav.me-auto.mb-2.mb-lg-0.ms-lg-4
+            li.nav-item
+              a.nav-link.active(href="index.html") Shopping
+            li.nav-item
+              a.nav-link(href="checkout.html") Payment
+            li.nav-item
+              a.nav-link(href="notifications.html") Notification
+          form.d-flex
+            button.btn.btn-outline-dark(type="submit")
+              i.bi-cart-fill.me-1
+              |  Cart
+              span.badge.bg-dark.text-white.ms-1.rounded-pill 0
+
+    // Header
+    header.bg-dark.py-5
+      .container.px-4.px-lg-5.my-5
+        .text-center.text-white
+          h1.display-4.fw-bolder Shop in style
+          p.lead.fw-normal.text-white-50.mb-0 With this shop hompeage template
+
+    // Section
+    section.py-5
+      .container.px-4.px-lg-5.mt-5
+        .row.gx-4.gx-lg-5.row-cols-2.row-cols-md-3.row-cols-xl-4.justify-content-center#productGrid
+
+    // Inline JS
+    script.
+      const products = [
+        {
+          id: '1',
+          name: 'Laptop',
+          price: 30000,
+          image: 'https://images.unsplash.com/photo-1517336714731-489689fd1ca8'
+        },
+        {
+          id: '3',
+          name: 'Keyboard',
+          price: 1200,
+          image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c'
+        }
+      ];
+      function loadProducts() {
+        const grid = document.getElementById('productGrid');
+        grid.innerHTML = products.map(p => {
+          const imgSrc = p.image
+            ? p.image
+            : `https://source.unsplash.com/400x300?${encodeURIComponent(p.name)}`;
+          return `
+            <div class="col mb-5">
+              <div class="card h-100">
+                <img class="card-img-top" src="${imgSrc}" alt="${p.name}" />
+                <div class="card-body p-4">
+                  <div class="text-center">
+                    <h5 class="fw-bolder">${p.name}</h5>
+                    $${p.price}
+                  </div>
+                </div>
+                <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                  <div class="text-center">
+                    <button class="btn btn-outline-dark mt-auto" onclick="order('${p.id}')">下單</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+      }
+      function order(id) {
+        alert(`你點了「${id}」這個商品的下單按鈕！（測試用）`);
+      }
+      loadProducts();
+
+    // Footer
+    footer.py-5.bg-dark
+      .container
+        p.m-0.text-center.text-white Copyright &copy; Your Website 2023
+
+    // Bootstrap core JS
+    script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js")
+    // Core theme JS
+    script(src="js/scripts.js")
