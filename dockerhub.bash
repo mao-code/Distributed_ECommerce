@@ -8,7 +8,7 @@
 #   && docker push $REG/ds_ecommerce_notification:1.0 # && docker push $REG/ds_ecommerce_front:1.0
 
 # === 部署到 K3s ===
-kubectl apply -f k8s/kafka-values.yaml   # 先確定 Kafka namespace 存在
+kubectl apply -f k8s/kafka.yaml   # 先確定 Kafka namespace 存在
 kubectl apply -f k8s/shopping.yaml
 kubectl apply -f k8s/payment.yaml
 kubectl apply -f k8s/notification.yaml
