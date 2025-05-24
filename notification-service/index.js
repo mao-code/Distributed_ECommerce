@@ -1,9 +1,18 @@
 import express from 'express'
 import { Kafka } from 'kafkajs'
+import cors from 'cors'
 
 const app = express()
-const notes = []
+app.use(express.json())
 
+app.use(cors({
+  origin: '*',                         // allow any origin
+  methods: ['GET','POST','OPTIONS'],   // allow these methods
+  allowedHeaders: ['Content-Type'],    // allow this header
+}))
+// app.options('*', cors())               // enable pre-flight for all routes
+
+const notes = []
 
 // 模擬幾筆通知資料之後串接完刪掉
 // const notes = [

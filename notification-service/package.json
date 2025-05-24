@@ -1,7 +1,8 @@
 {
   "name": "notification-service",
-  "type": "module",
   "version": "1.0.0",
+  "type": "module",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,8 +10,8 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^5.1.0",
     "kafkajs": "^2.2.4"
   }

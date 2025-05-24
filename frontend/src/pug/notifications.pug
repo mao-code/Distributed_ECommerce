@@ -51,35 +51,33 @@ html(lang="en")
     script(src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js")
     script(src="js/scripts.js")
 
-    // Inline JS with mock data
+    // Inline JS: fetch real notifications
     script.
-      const notes = [
-        {
-          title: '付款成功',
-          amount: 1500,
-          time: '2025-05-24 14:30'
-        },
-        {
-          title: '付款失敗',
-          amount: 2999,
-          time: '2025-05-24 15:00'
-        },
-        {
-          title: '退款處理中',
-          amount: 1200,
-          time: '2025-05-24 15:45'
+      document.addEventListener('DOMContentLoaded', async () => {
+        const list = document.getElementById('noteList');
+        const endpoint = 'http://localhost:30083/notifications'; // adjust host/port if needed
+        try {
+          const res = await fetch(endpoint);
+          if (!res.ok) throw new Error(`HTTP ${res.status}`);
+          const notes = await res.json();
+          console.log('Fetched notifications:', notes);
+          if (notes.length === 0) {
+            list.innerHTML = '<div class="col-12"><p class="text-center">目前沒有通知。</p></div>';
+          } else {
+            list.innerHTML = notes.map(n => `
+              <div class="col-12 col-md-6 col-lg-4 mb-4">
+                <div class="card shadow-sm h-100">
+                  <div class="card-body">
+                    <h5 class="card-title">${n.product.name}</h5>
+                    <p class="card-text">金額：$${n.product.price}</p>
+                    <p class="card-text text-muted"><small>${new Date(n.ts).toLocaleString()}</small></p>
+                  </div>
+                </div>
+              </div>
+            `).join('');
+          }
+        } catch (err) {
+          console.error('Failed to load notifications:', err);
+          list.innerHTML = '<div class="col-12"><p class="text-danger text-center">載入通知失敗，請稍後再試。</p></div>';
         }
-      ];
-
-      const list = document.getElementById('noteList');
-      list.innerHTML = notes.map(n => `
-        <div class="col-12 col-md-6 col-lg-4 mb-4">
-          <div class="card shadow-sm h-100">
-            <div class="card-body">
-              <h5 class="card-title">${n.title}</h5>
-              <p class="card-text">金額：$${n.amount}</p>
-              <p class="card-text text-muted"><small>${n.time}</small></p>
-            </div>
-          </div>
-        </div>
-      `).join('');
+      });

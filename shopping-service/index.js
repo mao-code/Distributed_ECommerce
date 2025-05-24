@@ -1,9 +1,19 @@
 import express from 'express'
 import { Kafka } from 'kafkajs'
 import { v4 as uuid } from 'uuid'
+import cors from 'cors'
 
 const app = express()
 app.use(express.json())
+
+
+app.use(cors({
+  origin: '*',                         // allow any origin
+  methods: ['GET','POST','OPTIONS'],   // allow these methods
+  allowedHeaders: ['Content-Type'],    // allow this header
+  preflightContinue: false             // send the CORS response right away
+}))
+app.options('*', cors())               // enable pre-flight for all routes
 
 // === Kafka 連線（broker 位址寫在環境變數）===
 const kafka = new Kafka({ brokers: [process.env.KAFKA_BROKER] })
@@ -27,7 +37,10 @@ app.post('/order', async (req, res) => {
 
   const order = { orderId: uuid(), product, ts: Date.now() }
   await producer.send({ topic: 'orders', messages: [{ value: JSON.stringify(order) }] })
+
+  res.set('Access-Control-Allow-Origin', '*')
   res.json(order)
+  
 })
 
 // 啟動

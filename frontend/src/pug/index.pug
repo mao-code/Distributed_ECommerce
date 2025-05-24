@@ -91,7 +91,7 @@ html(lang="en")
       // 模擬訂單送出 (會送到後端 /order API)
       async function order(productId) {
         try {
-          const res = await fetch('/order', {
+          const res = await fetch('http://localhost:30081/order', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ productId })
