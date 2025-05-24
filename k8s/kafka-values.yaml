@@ -1,9 +1,17 @@
 replicaCount: 1
+
 auth:
-  clientProtocol: plaintext
+  clientProtocol: plaintext  # dev 用，關閉 TLS/SASL
+
+listeners:
+  client:
+    protocol: PLAINTEXT
+    containerPort: 9092
+
+service:
+  type: ClusterIP
+  ports:
+    client: 9092
+
 zookeeper:
   enabled: true
-service:
-  listeners:
-    client:
-      protocol: PLAINTEXT

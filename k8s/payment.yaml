@@ -23,5 +23,5 @@ spec:
   selector: { app: payment }
   ports:
   - port: 80            # 叢集內部 port
-    targetPort: 3000    # 容器 port
+    targetPort: 4000    # 容器 port
     nodePort: 30082     # 主機對外 port（任選 30000-32767）
