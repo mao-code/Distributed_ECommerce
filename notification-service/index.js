@@ -22,4 +22,4 @@ consumer.run({
 })
 
 app.get('/notifications', (_, res) => res.json(notes))
-app.listen(3000, () => console.log('note on 3000'))
+app.listen(5000, () => console.log('note on 5000'))
