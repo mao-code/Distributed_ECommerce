@@ -1,3 +1,5 @@
+# Kubernetes implements HPA as a control loop: every ~15 seconds it fetches pod metrics
+
 apiVersion: autoscaling/v2
 kind: HorizontalPodAutoscaler
 metadata: { name: shopping-hpa }

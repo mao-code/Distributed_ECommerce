@@ -14,6 +14,13 @@ spec:
         - name: KAFKA_BROKER
           value: kafka.kafka.svc.cluster.local:9092
         ports: [{ containerPort: 3000 }]
+        resources:
+          requests:
+            cpu: 100m       # baseline for HPA calculations
+            memory: 128Mi   # optional, improves scheduling
+          limits:
+            cpu: 200m       # optional cap
+            memory: 256Mi   # optional cap
 ---
 apiVersion: v1
 kind: Service
