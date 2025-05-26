@@ -23,16 +23,14 @@ A Kubernetes manifest directory (k8s/) is provided to deploy the entire stack, i
 
 &nbsp; &nbsp;
 
-<div style="display: flex; justify-content: center; gap: 20px;">
-  <div>
-    <img src="assets/kafka.png" alt="kafks"/ width="300">
-    <div style="text-align:center"><em>Kafka using Helm Chart</em></div>
-  </div>
-  <div>
-    <img src="assets/hpa.png" alt="HPA"/ width="300">
-    <div style="text-align:center"><em>HPA for shopping service</em></div>
-  </div>
-</div>
+<p align="center">
+  <img src="assets/kafka.png" alt="kafks"/ width="300">
+  &nbsp; &nbsp;
+  <img src="assets/hpa.png" alt="HPA"/ width="300">
+</p>
+<p align="center">
+  <em>Kafka using Helm Chart &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HPA for shopping service</em>
+</p>
 
 ## Key Distributed System Techniques:
 * K8S
