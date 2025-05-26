@@ -1,4 +1,9 @@
 # Distributed_ECommerce
+<div align="center">
+  <img src="assets/component.png" alt="component"/>
+  <div><em>Components Diagram</em></div>
+</div>
+
 This repository contains a sample microservices-based distributed e-commerce system, implemented in Node.js and deployed on Kubernetes. It includes the following services:
 
 * shopping-service: exposes /products and /order endpoints; produces order messages to Kafka.
@@ -8,6 +13,22 @@ This repository contains a sample microservices-based distributed e-commerce sys
 * frontend: a Pug and SCSS-based web UI that interacts with the backend services.
 
 A Kubernetes manifest directory (k8s/) is provided to deploy the entire stack, including Deployments, Services, and a configurable HorizontalPodAutoscaler. Docker images are built and pushed via the dockerhub.bash script.
+
+<div align="center">
+  <img src="assets/sequence.png" alt="sequence"/>
+  <div><em>Sequence Diagram</em></div>
+</div>
+&nbsp; &nbsp;
+<div style="display: flex; justify-content: center; gap: 20px;">
+  <div>
+    <img src="assets/kafka.png" alt="kafks"/>
+    <div style="text-align:center"><em>Kafka using Helm Chart</em></div>
+  </div>
+  <div>
+    <img src="assets/hpa.png" alt="HPA"/>
+    <div style="text-align:center"><em>HPA for shopping service</em></div>
+  </div>
+</div>
 
 ## Key Distributed System Techniques:
 * K8S
