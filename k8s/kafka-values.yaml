@@ -1,17 +1,44 @@
-replicaCount: 1
+# replicaCount: 1
 
-auth:
-  clientProtocol: plaintext  # dev 用，關閉 TLS/SASL
+# auth:
+#   clientProtocol: plaintext  # dev 用，關閉 TLS/SASL
 
-listeners:
-  client:
-    protocol: PLAINTEXT
-    containerPort: 9092
+# listeners:
+#   client:
+#     protocol: PLAINTEXT
+#     containerPort: 9092
 
-service:
-  type: ClusterIP
-  ports:
-    client: 9092
+# service:
+#   type: ClusterIP
+#   ports:
+#     client: 9092
 
-zookeeper:
-  enabled: true
+# zookeeper:
+#   enabled: true
+
+kafka:
+  replicaCount: 1
+
+  auth:
+    clientProtocol: plaintext  # dev 用，關閉 TLS/SASL
+  
+  listeners:
+    client:
+      protocol: PLAINTEXT
+      containerPort: 9092
+
+  service:
+    type: ClusterIP
+    ports:
+      client: 9092
+
+  # 啟用內建的 ZooKeeper
+  zookeeper:
+    enabled: true
+
+  configurationOverrides:
+    # 自動建立 Topic 時，預設建立 4 個 partition
+    "num.partitions": 4
+
+    # 如果想要確保 broker 開啟 Topic 自動建立功能：
+    "auto.create.topics.enable": "true"
